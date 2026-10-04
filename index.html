@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>某高中吐槽生成器</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1e1e2f, #2d2d44);
+      font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 32px 28px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #aaa;
+      margin-bottom: 28px;
+    }
+
+    .quote-box {
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 14px;
+      padding: 24px 20px;
+      margin-bottom: 24px;
+      font-size: 18px;
+      line-height: 1.7;
+      transition: all 0.3s ease;
+    }
+
+    .quote-box.pop {
+      transform: scale(1.03);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      font-size: 17px;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      letter-spacing: 1px;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(238, 90, 36, 0.4);
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    .footer {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>某高中吐槽生成器</h1>
+    <p class="subtitle">纯属娱乐 · 请勿对号入座</p>
+
+    <div class="quote-box" id="quoteBox">
+      点击下方按钮，开始吐槽
+    </div>
+
+    <button onclick="generateQuote()">再来一条</button>
+
+    <p class="footer">本页面不指向任何真实学校</p>
+  </div>
+
+  <script>
+    const quotes = [
+      "食堂阿姨的手抖，是一种行为艺术。",
+      "跑操的意义，大概是让我确认自己还活着。",
+      "作业不是布置给学生的，是布置给家长的。",
+      "铃声一响，灵魂出窍；铃声一落，困意报到。",
+      "早读的声音很大，脑子里的声音更大：我想睡觉。",
+      "考试前：我要逆袭。考试后：逆袭失败，下次一定。",
+      "班主任的窗口，是校园里最神秘的观测点。",
+      "校规第一条：不准做任何让校规第二条尴尬的事。",
+      "我们学校最美的风景，是放学铃响的那一秒。",
+      "上课听懂了吗？听懂了。做题会吗？不会。",
+      "所谓的素质教育，就是换个姿势刷题。",
+      "宿舍熄灯后，才是真正的学术交流时间。",
+      "体育课最大的运动量，是跑到操场再走回来。",
+      "食堂的菜谱：周一土豆，周二土豆，周三土豆开会。",
+      "老师说这题很简单，就像说减肥很容易一样。",
+      "每次发誓好好学习，都是在下次考试前。",
+      "课间十分钟，上厕所排队八分钟。",
+      "升旗仪式的意义：证明我们还能站着。",
+      "放假通知，是校园里传播最快的消息。",
+      "毕业那天才发现，吐槽了三年的地方，居然有点舍不得。"
+    ];
+
+    let lastIndex = -1;
+    const quoteBox = document.getElementById("quoteBox");
+
+    function generateQuote() {
+      let index;
+      do {
+        index = Math.floor(Math.random() * quotes.length);
+      } while (index === lastIndex && quotes.length > 1);
+
+      lastIndex = index;
+      quoteBox.textContent = quotes[index];
+      quoteBox.classList.add("pop");
+
+      setTimeout(() => {
+        quoteBox.classList.remove("pop");
+      }, 300);
+    }
+  </script>
+
+</body>
+</html>
